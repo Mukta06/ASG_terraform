@@ -7,7 +7,7 @@ resource "aws_subnet" "subnet" {
     availability_zone        = element(var.AZ, count.index)
     map_public_ip_on_launch  = true
     tags = {
-      Name="public_subnet- ${count.index+1}"
+      Name="public_subnet- ${count.index}"+1
     }
   
 }
