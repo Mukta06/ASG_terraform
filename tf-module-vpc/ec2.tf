@@ -32,7 +32,7 @@ resource "aws_launch_template" "template" {
   
 }
 
-resource "aws_autoscaling_group" "autoscale" {
+resource "aws_autoscaling_group" "asg" {
     count                 = length(var.PUBLIC_SUBNET_CIDR)
     name                  = "Auto-Scaling"
     #availability_zones    = ["${var.AZ}"]
