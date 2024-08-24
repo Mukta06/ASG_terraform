@@ -9,9 +9,7 @@
 #     user_data                = << EOF
 
 #         #!/bin/bash
-#         echo "User data "
-
-
+#         echo "Use User Data To Deploy Code "
 #     EOF 
     
 #     tags = {
