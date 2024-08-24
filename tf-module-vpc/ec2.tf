@@ -24,7 +24,7 @@
 
 resource "aws_launch_template" "template" {
     name_prefix                 ="From-Template"
-    image_id                    =var.AMI_ID
+    image_id                    =data.aws_ami.ami.id
     instance_type               =var.INSTANCE_TYPE
     security_group_names        =[aws_security_group.sg.id]
     
