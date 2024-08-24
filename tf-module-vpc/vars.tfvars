@@ -7,3 +7,15 @@ AZ                    =["us-east-1a" , "us-east-1b"]
 DEFAULT_VPC_ID        = "vpc-006d8a30439e4cd0f"
 DEFAULT_VPC_CIDR      = "172.31.0.0/16"
 DEFAULT_VPC_RT        ="rtb-0b72155946424b61b"
+AMI_ID                = data.aws_ami.ami.id
+NAME_REGEX            ="DevOps-LabImage-Centos-8"
+OWNER                 = ["355449129696"]
+INSTANCE_TYPE         = "t2.micro"
+
+
+
+
+
+
+
+
