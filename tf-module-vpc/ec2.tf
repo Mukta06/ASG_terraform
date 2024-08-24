@@ -43,7 +43,7 @@ resource "aws_autoscaling_group" "autoscale" {
     vpc_zone_identifier   = [element(aws_subnet.subnet.*.id, count.index),]
 
     launch_template {
-      id = aws_launch_template.template.id
+      id = aws_launch_template.template.name
     }
   
 }
