@@ -33,14 +33,14 @@ resource "aws_launch_template" "template" {
 }
 
 resource "aws_autoscaling_group" "autoscale" {
-   # count                 = length(var.AZ)
+    count                 = length(var.PUBLIC_SUBNET_CIDR)
     name                  = "Auto-Scaling"
-    availability_zones    = ["${var.AZ}"]
+    #availability_zones    = ["${var.AZ}"]
     desired_capacity      = 1
     max_size              = 5
     min_size              = 1
     health_check_type     = "EC2"
-    vpc_zone_identifier   = ["${aws_subnet.subnet.*.id}"]
+    vpc_zone_identifier   = [element(aws_subnet.subnet.*.id, count.index),]
 
     launch_template {
       id = aws_launch_template.template.id
