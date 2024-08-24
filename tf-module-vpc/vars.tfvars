@@ -1,5 +1,6 @@
 # Declaring Variables
 
+
 VPC_CIDR              = "17.1.0.0/25"
 PUBLIC_SUBNET_CIDR    =["17.1.0.0/26" , "17.1.0.64/26"]
 AZ                    =["us-east-1a" , "us-east-1b"]
