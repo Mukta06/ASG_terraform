@@ -22,11 +22,12 @@
 
 #Creating Instances with AutoScaling upto 5
 
-resource "aws_launch_template" "template" {
+resource "aws_launch_configuration" "confg" {
     name_prefix                 ="From-Template"
     image_id                    =data.aws_ami.ami.id
     instance_type               =var.INSTANCE_TYPE
-    security_group_names        =[aws_security_group.sg.id]
+    security_groups             =[aws_security_group.sg.id]
+         
     
     
   
@@ -41,9 +42,5 @@ resource "aws_autoscaling_group" "asg" {
     min_size              = 1
     health_check_type     = "EC2"
     vpc_zone_identifier   = [element(aws_subnet.subnet.*.id, count.index),]
-
-    launch_template {
-      id = aws_launch_template.template.name
-    }
-  
+    launch_configuration = aws_launch_configuration.confg.name
 }
