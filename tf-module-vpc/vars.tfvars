@@ -11,6 +11,11 @@ NAME_REGEX            ="DevOps-LabImage-Centos-8"
 OWNER                 = ["355449129696"]
 INSTANCE_TYPE         = "t2.micro"
 SECURITY_GROUP_ID     ="${aws_security_group.sg.id}"
+INSTANCE_IDS          =["${instance_ids}"]
+ELB_DNS_NAME          ="${elb_dns_name}"
+
+
+
 
 
 
