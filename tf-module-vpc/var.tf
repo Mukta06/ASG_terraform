@@ -8,8 +8,7 @@ variable "NAME_REGEX" {}
 variable "OWNER" {}
 variable "INSTANCE_TYPE" {}
 variable "SECURITY_GROUP_ID" {}
-variable "instance_ids" {}
-variable "elb_dns_name" {}
+
 
 
 
