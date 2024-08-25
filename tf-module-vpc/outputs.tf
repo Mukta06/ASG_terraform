@@ -3,6 +3,6 @@ output "elb_dns_name" {
 }
 
 
-output "instance_id's" {
+output "instance_ids" {
   value = "Instance id's  : ${aws_instance.Instance.id}"
 }
