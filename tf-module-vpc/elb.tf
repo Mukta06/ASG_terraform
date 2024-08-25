@@ -5,7 +5,7 @@ resource "aws_elb" "ELB" {
     count=length(var.AZ)
     security_groups = [aws_security_group.sg.id]
     availability_zones = element(var.AZ, count.index)
-    #instances = [  ]
+    instances = element(aws_instance.Instance.*.id , count.index)
     health_check {
         healthy_threshold = 2
         unhealthy_threshold = 2
