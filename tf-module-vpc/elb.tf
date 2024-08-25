@@ -2,10 +2,10 @@
 
 resource "aws_elb" "ELB" {
     name = "terraform-elb-example"
-    count=length(var.AZ)
+    #count=length(var.AZ)
     security_groups = [aws_security_group.sg.id]
-    availability_zones = element(var.AZ, count.index)
-    instances = element(aws_instance.Instance.*.id , count.index)
+    availability_zones =[ var.AZ ]
+    instances ="${outputs.instance_ids}"
     health_check {
         healthy_threshold = 2
         unhealthy_threshold = 2
