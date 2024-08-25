@@ -2,7 +2,7 @@
 
 resource "aws_elb" "ELB" {
     name = "terraform-elb-example"
-    security_groups = ["${aws_security_group.sg.id}"]
+    security_groups = [aws_security_group.sg.id]
     availability_zones = ["${var.AZ}"]
     #instances = [  ]
     health_check {
