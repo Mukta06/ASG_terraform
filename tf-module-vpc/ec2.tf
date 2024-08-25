@@ -48,7 +48,7 @@ resource "aws_autoscaling_group" "asg" {
     vpc_zone_identifier   = [element(aws_subnet.subnet.*.id, count.index),]
     launch_configuration = aws_launch_configuration.confg.name
     force_delete              = true
-    depends_on                = ["aws_launch_configuration.confg"]
+    depends_on                = [aws_launch_configuration.confg]
 
 
    # termination_policies = [ "O" ]
