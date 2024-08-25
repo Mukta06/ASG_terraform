@@ -23,19 +23,21 @@
 #Creating Instances with AutoScaling upto 5
 
 resource "aws_launch_configuration" "confg" {
-    #name                        ="From-confg"
+     lifecycle {
+      create_before_destroy = true
+    } 
+    name_prefix                = "From-confg"
     image_id                    =data.aws_ami.ami.id
     instance_type               =var.INSTANCE_TYPE
     security_groups             =[aws_security_group.sg.id]
-    lifecycle {
-    create_before_destroy = true
-  } 
-  
 }
 
 resource "aws_autoscaling_group" "asg" {
+     lifecycle {
+       create_before_destroy = true
+    } 
     count                 = length(var.PUBLIC_SUBNET_CIDR)
-    name                  = "ASG"
+    name                  = "${aws_launch_configuration.confg.name}"
     #availability_zones    = ["${var.AZ}"]
     desired_capacity      = 1
     max_size              = 5
@@ -43,8 +45,6 @@ resource "aws_autoscaling_group" "asg" {
     health_check_type     = "EC2"
     vpc_zone_identifier   = [element(aws_subnet.subnet.*.id, count.index),]
     launch_configuration = aws_launch_configuration.confg.name
-    lifecycle {
-    create_before_destroy = true
-   } 
+
    # termination_policies = [ "O" ]
 }
