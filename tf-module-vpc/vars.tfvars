@@ -10,7 +10,7 @@ DEFAULT_VPC_RT        ="rtb-0b72155946424b61b"
 NAME_REGEX            ="DevOps-LabImage-Centos-8"
 OWNER                 = ["355449129696"]
 INSTANCE_TYPE         = "t2.micro"
-SECURITY_GROUP_ID     =[aws_security_group.sg.id]
+
 
 
 
