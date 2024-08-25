@@ -27,9 +27,9 @@ resource "aws_launch_configuration" "confg" {
     image_id                    =data.aws_ami.ami.id
     instance_type               =var.INSTANCE_TYPE
     security_groups             =[aws_security_group.sg.id]
-         
-    
-    
+    lifecycle {
+    create_before_destroy = true
+  } 
   
 }
 
@@ -43,4 +43,5 @@ resource "aws_autoscaling_group" "asg" {
     health_check_type     = "EC2"
     vpc_zone_identifier   = [element(aws_subnet.subnet.*.id, count.index),]
     launch_configuration = aws_launch_configuration.confg.name
+   # termination_policies = [ "O" ]
 }
