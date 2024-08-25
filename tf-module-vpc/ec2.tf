@@ -23,7 +23,7 @@
 #Creating Instances with AutoScaling upto 5
 
 resource "aws_launch_configuration" "confg" {
-    name_prefix                 ="From-confg"
+    name                        ="From-confg"
     image_id                    =data.aws_ami.ami.id
     instance_type               =var.INSTANCE_TYPE
     security_groups             =[aws_security_group.sg.id]
