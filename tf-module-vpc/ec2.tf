@@ -43,5 +43,8 @@ resource "aws_autoscaling_group" "asg" {
     health_check_type     = "EC2"
     vpc_zone_identifier   = [element(aws_subnet.subnet.*.id, count.index),]
     launch_configuration = aws_launch_configuration.confg.name
+    lifecycle {
+    create_before_destroy = true
+   } 
    # termination_policies = [ "O" ]
 }
