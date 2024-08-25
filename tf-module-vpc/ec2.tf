@@ -23,7 +23,7 @@
 #Creating Instances with AutoScaling upto 5
 
 resource "aws_launch_configuration" "confg" {
-    name_prefix                 ="From-Template"
+    name_prefix                 ="From-confg"
     image_id                    =data.aws_ami.ami.id
     instance_type               =var.INSTANCE_TYPE
     security_groups             =[aws_security_group.sg.id]
@@ -35,7 +35,7 @@ resource "aws_launch_configuration" "confg" {
 
 resource "aws_autoscaling_group" "asg" {
     count                 = length(var.PUBLIC_SUBNET_CIDR)
-    name                  = "Auto-Scaling"
+    name                  = "ASG"
     #availability_zones    = ["${var.AZ}"]
     desired_capacity      = 1
     max_size              = 5
