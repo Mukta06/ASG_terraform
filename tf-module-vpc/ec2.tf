@@ -6,6 +6,7 @@ resource "aws_instance" "Instance" {
     #subnet_id               =element(aws_subnet.subnet.*.id, count.index)
     vpc_security_group_ids   = [aws_security_group.sg.id]
     iam_instance_profile     = "b57-admin-iam-role" 
+    
     # user_data                = <<EOF
 
     #     #!/bin/bash

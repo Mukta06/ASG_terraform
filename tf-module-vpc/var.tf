@@ -7,6 +7,7 @@ variable "DEFAULT_VPC_RT" {}
 variable "NAME_REGEX" {}
 variable "OWNER" {}
 variable "INSTANCE_TYPE" {}
+variable "SECURITY_GROUP_ID" {}
 
 
 
