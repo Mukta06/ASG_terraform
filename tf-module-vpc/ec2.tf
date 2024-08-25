@@ -32,6 +32,8 @@ resource "aws_launch_configuration" "confg" {
     security_groups             =[aws_security_group.sg.id]
 }
 
+
+
 resource "aws_autoscaling_group" "asg" {
      lifecycle {
        create_before_destroy = true
@@ -40,11 +42,14 @@ resource "aws_autoscaling_group" "asg" {
     name                  = "${aws_launch_configuration.confg.name}"
     #availability_zones    = ["${var.AZ}"]
     desired_capacity      = 1
-    max_size              = 5
+    max_size              = 2
     min_size              = 1
     health_check_type     = "EC2"
     vpc_zone_identifier   = [element(aws_subnet.subnet.*.id, count.index),]
     launch_configuration = aws_launch_configuration.confg.name
+    force_delete              = true
+    depends_on                = ["aws_launch_configuration.confg"]
+
 
    # termination_policies = [ "O" ]
 }
