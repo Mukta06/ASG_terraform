@@ -4,7 +4,7 @@ resource "aws_launch_template" "launch-template-ec2" {
     name = "launch-template-ec2"
     image_id = var.AMI_ID
     instance_type = var.INSTANCE_TYPE
-    user_data =filebase64("user-data")
+    user_data = filebase64 ("user-data.sh")
 
     network_interfaces {
        security_groups = [ aws_security_group.ec2-sg.id]
