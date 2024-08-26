@@ -29,14 +29,14 @@ resource "aws_security_group" "ec2-sg" {
     description = "Security Group for ec2 Instance"
     vpc_id = aws_vpc.Mukta.id
 
-    ingress = {
+    ingress {
         from_port        = 0
         to_port          = 0
         protocol         = "-1"
         cidr_blocks      = [aws_security_group.alb-sg.id]
     }
 
-    egress = {
+    egress {
         from_port        = 0
         to_port          = 0
         protocol         = "-1"
