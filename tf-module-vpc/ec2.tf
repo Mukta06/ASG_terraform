@@ -2,9 +2,9 @@
 
 resource "aws_launch_template" "launch-template-ec2" {
     name = "launch-template-ec2"
-    image_id = "ami-066784287e358dad1"
-    instance_type = "t2.micro"
-    user_data = filebase64("user-data.sh")
+    image_id = var.AMI_ID
+    instance_type = var.INSTANCE_TYPE
+    user_data = file("user-data.sh")
 
     network_interfaces {
        security_groups = [ aws_security_group.ec2-sg.id]
@@ -40,9 +40,6 @@ resource "aws_autoscaling_group" "ec2-asg" {
     health_check_type ="EC2"
 }
 
-output "alb-dns-name" {
-    value = aws_lb.app-lb.dns_name
-}
 
 
 
@@ -83,59 +80,4 @@ output "alb-dns-name" {
 
 
 
-# resource "aws_instance" "Instance" {
-#     count                    = length(aws_subnet.subnet.*.id)
-#     ami                      = data.aws_ami.ami.id
-#     instance_type            = "t2.micro"
-#     subnet_id                = element(aws_subnet.subnet.*.id, count.index)
-#     #subnet_id               =element(aws_subnet.subnet.*.id, count.index)
-#     vpc_security_group_ids   = [aws_security_group.sg.id]
-#     iam_instance_profile     = "b57-admin-iam-role" 
-    
-#     # user_data                = <<EOF
 
-#     #     #!/bin/bash
-#     #     echo "Use User Data To Deploy Code "
-#     # EOF 
-#     #user_data= file(<filename.sh>)
-    
-#     tags = {
-#       Name= "Instance-${count.index+1}"
-#     }
-
-  
-# }
-
-#Creating Instances with AutoScaling upto 5
-
-# resource "aws_launch_configuration" "confg" {
-#      lifecycle {
-#       create_before_destroy = true
-#     } 
-#     name_prefix                = "From-confg"
-#     image_id                    =data.aws_ami.ami.id
-#     instance_type               =var.INSTANCE_TYPE
-#     security_groups             =[aws_security_group.sg.id]
-# }
-
-
-
-# resource "aws_autoscaling_group" "asg" {
-#      lifecycle {
-#        create_before_destroy = true
-#     } 
-#     count                 = length(var.PUBLIC_SUBNET_CIDR)
-#     name                  = "${aws_launch_configuration.confg.name}"
-#     #availability_zones    = ["${var.AZ}"]
-#     desired_capacity      = 1
-#     max_size              = 2
-#     min_size              = 1
-#     health_check_type     = "EC2"
-#     vpc_zone_identifier   = [element(aws_subnet.subnet.*.id, count.index),]
-#     launch_configuration = aws_launch_configuration.confg.name
-#     force_delete              = true
-#     depends_on                = [aws_launch_configuration.confg]
-
-
-#    # termination_policies = [ "O" ]
-# }
